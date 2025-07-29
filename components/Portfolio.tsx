@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Calendar, MapPin, Mail, Phone, Download, Star, Users, Award, Code, Palette, Zap } from 'lucide-react';
+import Image from 'next/image'; // Added for <Image> component
 
 // Utility function for class names
 function cn(...inputs: (string | undefined | null | false)[]): string {
@@ -215,9 +216,11 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img 
+        <Image 
           src={project.image} 
           alt={project.title}
+          width={600} 
+          height={400} 
           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -406,9 +409,11 @@ const Portfolio: React.FC<PortfolioProps> = ({
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-3"
             >
-              <img 
+              <Image 
                 src={avatar} 
                 alt={name}
+                width={40} 
+                height={40} 
                 className="w-10 h-10 rounded-full object-cover border-2 border-border"
               />
               <div>
@@ -500,9 +505,11 @@ const Portfolio: React.FC<PortfolioProps> = ({
                   className="relative"
                 >
                   <SpotlightCard className="p-8">
-                    <img 
+                    <Image 
                       src={avatar} 
                       alt={name}
+                      width={400} 
+                      height={400} 
                       className="w-full max-w-md mx-auto rounded-2xl object-cover"
                     />
                   </SpotlightCard>
@@ -516,7 +523,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
               >
-                {stats.map((stat, index) => (
+                {stats.map((stat) => (
                   <div key={stat.label} className="text-center space-y-2">
                     <div className="flex items-center justify-center text-blue-400 mb-2">
                       {stat.icon}
@@ -688,10 +695,10 @@ const Portfolio: React.FC<PortfolioProps> = ({
                 className="text-center mb-12"
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Let's Work Together
+                  Let&#39;s Work Together
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Have a project in mind? I'd love to hear about it and discuss how we can bring your ideas to life.
+                  Have a project in mind? I&#39;d love to hear about it and discuss how we can bring your ideas to life.
                 </p>
               </motion.div>
 
@@ -914,7 +921,7 @@ export default function PortfolioDemo() {
     <Portfolio
       name="Alex Johnson"
       title="Full Stack Developer & UI/UX Designer"
-      bio="I'm a passionate developer with 5+ years of experience creating beautiful and functional digital experiences. I specialize in modern web technologies and love turning complex problems into simple, elegant solutions."
+      bio="I&#39;m a passionate developer with 5+ years of experience creating beautiful and functional digital experiences. I specialize in modern web technologies and love turning complex problems into simple, elegant solutions."
       avatar="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
       projects={defaultProjects}
       skills={defaultSkills}
