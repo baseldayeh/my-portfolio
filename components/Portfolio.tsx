@@ -460,7 +460,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
                 >
                   <div className="space-y-4">
                     <h1 className="text-4xl md:text-6xl font-bold text-foreground">
-                      Hi, I'm{' '}
+                      Hi, Im{' '}
                       <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
                         {name.split(' ')[0]}
                       </span>
@@ -639,7 +639,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
                   Work Experience
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  My professional journey and the companies I've worked with.
+                  My professional journey and the companies Ive worked with.
                 </p>
               </motion.div>
 
@@ -688,10 +688,10 @@ const Portfolio: React.FC<PortfolioProps> = ({
                 className="text-center mb-12"
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Let's Work Together
+                  Lets Work Together
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Have a project in mind? I'd love to hear about it and discuss how we can bring your ideas to life.
+                  Have a project in mind? Id love to hear about it and discuss how we can bring your ideas to life.
                 </p>
               </motion.div>
 
