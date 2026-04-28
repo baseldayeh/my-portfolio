@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, MapPin, Mail, Phone, Download, Star, Award, Code, Palette, Zap } from 'lucide-react';
+import { ExternalLink, Github, MapPin, Mail, Phone, Download, Star, Award, Code, Palette, Zap, Menu, X } from 'lucide-react';
 import Image from 'next/image';
 
 // Utility function for class names
@@ -124,7 +124,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
     backgroundAttachment: 'fixed',
     border: 'var(--border-size) solid var(--backup-border)',
     position: 'relative' as const,
-    touchAction: 'none' as const,
+    touchAction: 'manipulation' as const,
   });
 
   const beforeAfterStyles = `
@@ -396,6 +396,7 @@ const Portfolio: React.FC<PortfolioProps> = ({
 }) => {
   const [activeSection, setActiveSection] = useState('about');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const categories = ['all', 'web', 'mobile', 'design', 'other'];
   
@@ -428,13 +429,14 @@ const Portfolio: React.FC<PortfolioProps> = ({
                   height={40} 
                   className="w-10 h-10 rounded-full object-cover border-2 border-border"
                 />
-                <div>
-                  <h1 className="font-bold text-foreground">{name}</h1>
-                  <p className="text-sm text-muted-foreground">{title}</p>
+                <div className="hidden sm:block">
+                  <h1 className="font-bold text-foreground leading-tight">{name}</h1>
+                  <p className="text-xs text-muted-foreground">{title}</p>
                 </div>
               </div>
             </motion.div>
 
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
               {['about', 'projects', 'skills', 'experience', 'contact'].map((section) => (
                 <button
@@ -452,21 +454,76 @@ const Portfolio: React.FC<PortfolioProps> = ({
               ))}
             </div>
 
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <a
-                href="/BaselDayeh.pdf"
-                download
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+            <div className="flex items-center gap-4">
+              <div className="hidden md:block">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <a
+                    href="/BaselDayeh.pdf"
+                    download
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+                  >
+                    <Download className="w-4 h-4" />
+                    Resume
+                  </a>
+                </motion.div>
+              </div>
+
+              {/* Mobile Menu Toggle */}
+              <button 
+                className="p-2 md:hidden text-muted-foreground hover:text-foreground"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <Download className="w-4 h-4" />
-                Resume
-              </a>
-            </motion.div>
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <div className="md:hidden border-t border-border bg-background">
+                <div className="flex flex-col p-6 gap-4">
+                  {['about', 'projects', 'skills', 'experience', 'contact'].map((section) => (
+                    <button
+                      key={section}
+                      onClick={() => {
+                        setActiveSection(section);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={cn(
+                        "text-lg font-medium transition-colors capitalize text-left",
+                        activeSection === section 
+                          ? "text-blue-400" 
+                          : "text-muted-foreground hover:text-foreground"
+                      )}
+                    >
+                      {section}
+                    </button>
+                  ))}
+                  <div className="pt-4 border-t border-border">
+                    <a
+                      href="/BaselDayeh.pdf"
+                      download
+                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-blue-600 text-white rounded-lg text-sm font-medium"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download Resume
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <div className="pt-20">
@@ -798,13 +855,25 @@ const Portfolio: React.FC<PortfolioProps> = ({
                     <h3 className="text-xl font-semibold text-foreground mb-6">
                       Send a Message
                     </h3>
-                    <form className="space-y-4">
+                    <form 
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        const formData = new FormData(e.currentTarget);
+                        const name = formData.get('name');
+                        const email = formData.get('email');
+                        const message = formData.get('message');
+                        window.location.href = `mailto:baseldayeh@gmail.com?subject=Portfolio Message from ${name}&body=From: ${name} (${email})%0D%0A%0D%0A${message}`;
+                      }}
+                      className="space-y-4"
+                    >
                       <div>
                         <label className="block text-sm font-medium text-foreground mb-2">
                           Name
                         </label>
                         <input
+                          name="name"
                           type="text"
+                          required
                           className="w-full px-3 py-2 bg-muted/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-foreground"
                           placeholder="Your name"
                         />
@@ -814,7 +883,9 @@ const Portfolio: React.FC<PortfolioProps> = ({
                           Email
                         </label>
                         <input
+                          name="email"
                           type="email"
+                          required
                           className="w-full px-3 py-2 bg-muted/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-foreground"
                           placeholder="your@email.com"
                         />
@@ -824,7 +895,9 @@ const Portfolio: React.FC<PortfolioProps> = ({
                           Message
                         </label>
                         <textarea
+                          name="message"
                           rows={4}
+                          required
                           className="w-full px-3 py-2 bg-muted/50 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-foreground resize-none"
                           placeholder="Tell me about your project..."
                         />
