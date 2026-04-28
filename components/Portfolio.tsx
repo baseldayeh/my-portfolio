@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Calendar, MapPin, Mail, Phone, Download, Star, Users, Award, Code, Palette, Zap } from 'lucide-react';
+import { ExternalLink, Github, MapPin, Mail, Phone, Download, Star, Award, Code, Palette, Zap } from 'lucide-react';
 import Image from 'next/image';
 
 // Utility function for class names
@@ -360,9 +360,9 @@ const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
           <span className="text-muted-foreground">Proficiency</span>
           <span className="text-foreground font-medium">{skill.level}%</span>
         </div>
-        <div className="w-full bg-muted/30 rounded-full h-2">
+        <div className="w-full bg-muted/30 rounded-full h-2 overflow-hidden">
           <motion.div
-            className={cn("h-2 rounded-full", getCategoryColor(skill.category).replace('text-', 'bg-'))}
+            className={cn("h-full rounded-full", getCategoryColor(skill.category).replace('text-', 'bg-'))}
             initial={{ width: 0 }}
             animate={{ width: isVisible ? `${skill.level}%` : 0 }}
             transition={{ duration: 1, delay: 0.2 }}
