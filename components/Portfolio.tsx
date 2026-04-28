@@ -229,30 +229,36 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           {isHovered && (
             <div style={{ position: 'absolute', bottom: '16px', left: '16px', right: '16px', display: 'flex', gap: '8px' }}>
               {project.liveUrl && (
-                <motion.a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm font-medium"
                 >
-                  <ExternalLink className="w-4 h-4" />
-                  Live
-                </motion.a>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm font-medium"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Live
+                  </a>
+                </motion.div>
               )}
               {project.githubUrl && (
-                <motion.a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm font-medium"
                 >
-                  <Github className="w-4 h-4" />
-                  Code
-                </motion.a>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm font-medium"
+                  >
+                    <Github className="w-4 h-4" />
+                    Code
+                  </a>
+                </motion.div>
               )}
             </div>
           )}
@@ -443,16 +449,19 @@ const Portfolio: React.FC<PortfolioProps> = ({
               ))}
             </div>
 
-            <motion.a
-              href="/BaselDayeh.pdf"
-              download
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
             >
-              <Download className="w-4 h-4" />
-              Resume
-            </motion.a>
+              <a
+                href="/BaselDayeh.pdf"
+                download
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                Resume
+              </a>
+            </motion.div>
           </div>
         </div>
       </nav>
@@ -485,22 +494,28 @@ const Portfolio: React.FC<PortfolioProps> = ({
                   </div>
 
                   <div className="flex flex-wrap gap-4">
-                    <motion.button
+                    <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => setActiveSection('projects')}
-                      className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
                     >
-                      View My Work
-                    </motion.button>
-                    <motion.button
+                      <button
+                        onClick={() => setActiveSection('projects')}
+                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors w-full"
+                      >
+                        View My Work
+                      </button>
+                    </motion.div>
+                    <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => setActiveSection('contact')}
-                      className="px-6 py-3 border border-border hover:bg-muted/50 text-foreground rounded-lg font-medium transition-colors"
                     >
-                      Get In Touch
-                    </motion.button>
+                      <button
+                        onClick={() => setActiveSection('contact')}
+                        className="px-6 py-3 border border-border hover:bg-muted/50 text-foreground rounded-lg font-medium transition-colors w-full"
+                      >
+                        Get In Touch
+                      </button>
+                    </motion.div>
                   </div>
                 </motion.div>
 
@@ -803,14 +818,17 @@ const Portfolio: React.FC<PortfolioProps> = ({
                           placeholder="Tell me about your project..."
                         />
                       </div>
-                      <motion.button
+                      <motion.div
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        type="submit"
-                        className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
                       >
-                        Send Message
-                      </motion.button>
+                        <button
+                          type="submit"
+                          className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+                        >
+                          Send Message
+                        </button>
+                      </motion.div>
                     </form>
                   </SpotlightCard>
                 </motion.div>
