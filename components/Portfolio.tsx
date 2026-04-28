@@ -361,12 +361,15 @@ const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
           <span className="text-foreground font-medium">{skill.level}%</span>
         </div>
         <div className="w-full bg-muted/30 rounded-full h-2 overflow-hidden">
-          <motion.div
-            className={cn("h-full rounded-full", getCategoryColor(skill.category).replace('text-', 'bg-'))}
-            initial={{ width: 0 }}
-            animate={{ width: isVisible ? `${skill.level}%` : 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          />
+          <div className={cn("h-full rounded-full", getCategoryColor(skill.category).replace('text-', 'bg-'))}>
+            <motion.div
+              className="h-full"
+              initial={{ width: 0 }}
+              animate={{ width: isVisible ? `${skill.level}%` : 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              style={{ backgroundColor: 'inherit', width: '100%' }}
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -417,18 +420,19 @@ const Portfolio: React.FC<PortfolioProps> = ({
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3"
             >
-              <Image 
-                src={avatar} 
-                alt={name}
-                width={40} 
-                height={40} 
-                className="w-10 h-10 rounded-full object-cover border-2 border-border"
-              />
-              <div>
-                <h1 className="font-bold text-foreground">{name}</h1>
-                <p className="text-sm text-muted-foreground">{title}</p>
+              <div className="flex items-center gap-3">
+                <Image 
+                  src={avatar} 
+                  alt={name}
+                  width={40} 
+                  height={40} 
+                  className="w-10 h-10 rounded-full object-cover border-2 border-border"
+                />
+                <div>
+                  <h1 className="font-bold text-foreground">{name}</h1>
+                  <p className="text-sm text-muted-foreground">{title}</p>
+                </div>
               </div>
             </motion.div>
 
