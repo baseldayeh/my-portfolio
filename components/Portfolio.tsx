@@ -520,23 +520,25 @@ const Portfolio: React.FC<PortfolioProps> = ({
                       </button>
                     </motion.div>
                   </div>
-                </motion.div>
+                </div>
+              </motion.div>
 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="relative"
                 >
-                  <SpotlightCard className="p-8">
-                    <Image 
-                      src={avatar} 
-                      alt={name}
-                      width={400} 
-                      height={400} 
-                      className="w-full max-w-md mx-auto rounded-2xl object-cover"
-                    />
-                  </SpotlightCard>
+                  <div className="relative">
+                    <SpotlightCard className="p-8">
+                      <Image 
+                        src={avatar} 
+                        alt={name}
+                        width={400} 
+                        height={400} 
+                        className="w-full max-w-md mx-auto rounded-2xl object-cover"
+                      />
+                    </SpotlightCard>
+                  </div>
                 </motion.div>
               </div>
 
@@ -545,21 +547,22 @@ const Portfolio: React.FC<PortfolioProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
               >
-                {stats.map((stat) => (
-                  <div key={stat.label} className="text-center space-y-2">
-                    <div className="flex items-center justify-center text-blue-400 mb-2">
-                      {stat.icon}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+                  {stats.map((stat) => (
+                    <div key={stat.label} className="text-center space-y-2">
+                      <div className="flex items-center justify-center text-blue-400 mb-2">
+                        {stat.icon}
+                      </div>
+                      <div className="text-2xl md:text-3xl font-bold text-foreground">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {stat.label}
+                      </div>
                     </div>
-                    <div className="text-2xl md:text-3xl font-bold text-foreground">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </motion.div>
             </div>
           </section>
@@ -572,14 +575,15 @@ const Portfolio: React.FC<PortfolioProps> = ({
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Featured Projects
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Here are some of my recent projects that showcase my skills and experience.
-                </p>
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Featured Projects
+                  </h2>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Here are some of my recent projects that showcase my skills and experience.
+                  </p>
+                </div>
               </motion.div>
 
               {/* Category Filter */}
@@ -603,22 +607,23 @@ const Portfolio: React.FC<PortfolioProps> = ({
               {/* Projects Grid */}
               <motion.div
                 layout
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
-                <AnimatePresence>
-                  {filteredProjects.map((project) => (
-                    <motion.div
-                      key={project.id}
-                      layout
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ProjectCard project={project} />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <AnimatePresence>
+                    {filteredProjects.map((project) => (
+                      <motion.div
+                        key={project.id}
+                        layout
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ProjectCard project={project} />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
               </motion.div>
             </div>
           </section>
@@ -631,14 +636,15 @@ const Portfolio: React.FC<PortfolioProps> = ({
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Skills & Expertise
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Technologies and tools I work with to bring ideas to life.
-                </p>
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Skills & Expertise
+                  </h2>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Technologies and tools I work with to bring ideas to life.
+                  </p>
+                </div>
               </motion.div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -664,14 +670,15 @@ const Portfolio: React.FC<PortfolioProps> = ({
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Work Experience
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  My professional journey and the companies I&apos;ve worked with.
-                </p>
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Work Experience
+                  </h2>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    My professional journey and the companies I&apos;ve worked with.
+                  </p>
+                </div>
               </motion.div>
 
               <div className="space-y-8">
@@ -716,14 +723,15 @@ const Portfolio: React.FC<PortfolioProps> = ({
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-12"
               >
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Let&apos;s Work Together
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Have a project in mind? I&apos;d love to hear about it and discuss how we can bring your ideas to life.
-                </p>
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    Let&apos;s Work Together
+                  </h2>
+                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Have a project in mind? I&apos;d love to hear about it and discuss how we can bring your ideas to life.
+                  </p>
+                </div>
               </motion.div>
 
               <div className="grid md:grid-cols-2 gap-8">
