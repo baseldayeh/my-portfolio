@@ -361,15 +361,14 @@ const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
           <span className="text-foreground font-medium">{skill.level}%</span>
         </div>
         <div className="w-full bg-muted/30 rounded-full h-2 overflow-hidden">
-          <div className={cn("h-full rounded-full", getCategoryColor(skill.category).replace('text-', 'bg-'))}>
-            <motion.div
-              className="h-full"
-              initial={{ width: 0 }}
-              animate={{ width: isVisible ? `${skill.level}%` : 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              style={{ backgroundColor: 'inherit', width: '100%' }}
-            />
-          </div>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: isVisible ? `${skill.level}%` : 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            style={{ height: '100%' }}
+          >
+            <div className={cn("h-full rounded-full", getCategoryColor(skill.category).replace('text-', 'bg-'))} />
+          </motion.div>
         </div>
       </div>
     </div>
