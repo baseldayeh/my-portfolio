@@ -378,7 +378,7 @@ const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
 // Main Portfolio Component
 const Portfolio: React.FC<PortfolioProps> = ({
   name = "Basel Dayeh",
-  title = "Front End Mobile Application Developer",
+  title = "Mobile Application Developer",
   bio = "Junior Mobile Developer bridging the gap between elegant UI/UX design and robust functionality. Proficient in Flutter, Firebase, and Figma. Looking to apply my Computer Science foundation and passion for usercentric development to deliver seamless digital experiences within a dynamic tech environment.",
   avatar = "/baseldayeh.jpg",
   projects = [],
@@ -936,7 +936,7 @@ const defaultProjects: Project[] = [
     category: 'mobile',
     featured: true,
     githubUrl: 'https://github.com/baseldayeh/pro_order',
-    year: '2026'
+    year: 'Mar 2026 – Apr 2026'
   },
   {
     id: '2',
@@ -947,7 +947,7 @@ const defaultProjects: Project[] = [
     category: 'mobile',
     featured: true,
     githubUrl: 'https://github.com/baseldayeh/dashboard_admin',
-    year: '2026'
+    year: 'Mar 2026 – Apr 2026'
   },
   {
     id: '3',
@@ -958,7 +958,7 @@ const defaultProjects: Project[] = [
     category: 'mobile',
     featured: true,
     githubUrl: 'https://github.com/baseldayeh/ju-scooter',
-    year: '2025'
+    year: 'Apr 2025 – Jun 2025'
   },
   {
     id: '4',
@@ -1006,7 +1006,7 @@ export default function PortfolioDemo() {
   return (
     <Portfolio
       name="Basel Dayeh"
-      title="Front End Mobile Application Developer"
+      title="Mobile Application Developer"
       bio="Junior Mobile Developer bridging the gap between elegant UI/UX design and robust functionality. Proficient in Flutter, Firebase, and Figma. Looking to apply my Computer Science foundation and passion for usercentric development to deliver seamless digital experiences within a dynamic tech environment."
       avatar="/baseldayeh.jpg"
       projects={defaultProjects}
