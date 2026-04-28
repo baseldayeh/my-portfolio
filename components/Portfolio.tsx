@@ -479,24 +479,24 @@ const Portfolio: React.FC<PortfolioProps> = ({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="space-y-6"
                 >
-                  <div className="space-y-4">
-                    <h1 className="text-4xl md:text-6xl font-bold text-foreground">
-                      Hi, I&apos;m{' '}
-                      <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                        {name.split(' ')[0]}
-                      </span>
-                    </h1>
-                    <h2 className="text-xl md:text-2xl text-muted-foreground font-light">
-                      {title}
-                    </h2>
-                    <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-                      {bio}
-                    </p>
-                  </div>
+                  <div className="space-y-6">
+                    <div className="space-y-4">
+                      <h1 className="text-4xl md:text-6xl font-bold text-foreground">
+                        Hi, I&apos;m{' '}
+                        <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+                          {name.split(' ')[0]}
+                        </span>
+                      </h1>
+                      <h2 className="text-xl md:text-2xl text-muted-foreground font-light">
+                        {title}
+                      </h2>
+                      <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                        {bio}
+                      </p>
+                    </div>
 
-                  <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-wrap gap-4">
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
